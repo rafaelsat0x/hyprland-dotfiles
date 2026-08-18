@@ -1,0 +1,17 @@
+-- Gruvbox colors
+
+GRUVBG0_H  = "rgba(1d2021ff)"
+GRUVBG0    = "rgba(282828ff)"
+GRUVBG1    = "rgba(3c3836ff)"
+GRUVBG2    = "rgba(504945ff)"
+GRUVBG3    = "rgba(665c54ff)"
+GRUVBG4    = "rgba(7c6f64ff)"
+GRUVFG     = "rgba(ebdbb2ff)"
+GRUVGRAY   = "rgba(928374ff)"
+GRUVRED    = "rgba(fb4934ff)"
+GRUVGREEN  = "rgba(b8bb26ff)"
+GRUVYELLOW = "rgba(fabd2fff)"
+GRUVBLUE   = "rgba(83a598ff)"
+GRUVPURPLE = "rgba(d3869bff)"
+GRUVAQUA   = "rgba(8ec07cff)"
+GRUVORANGE = "rgba(fe8019ff)"
