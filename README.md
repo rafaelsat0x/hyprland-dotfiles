@@ -26,12 +26,15 @@ cd ~/dotfiles
 ./install.sh
 ```
 
-`install.sh` symlinks each item into place. Anything already at the target
-path (real file/dir) is moved into `~/.dotfiles-backup/<timestamp>/` first,
-so it's non-destructive and safe to re-run.
+`install.sh` copies each item into place as real files (not symlinks).
+A target is only touched if it differs from the repo's copy; anything it
+overwrites is moved into `~/.dotfiles-backup/<timestamp>/` first, so it's
+non-destructive and safe to re-run.
 
-Because it's symlinks, editing configs on the live machine and running
-`git add / commit / push` from `~/dotfiles` is enough to update the backup.
+Because these are plain copies, the flow is one-way (repo -> `$HOME`): after
+editing a live config, copy it back into `~/dotfiles` and
+`git add / commit / push` to update the backup — `install.sh` won't pick up
+live edits on its own.
 
 ## Notes
 

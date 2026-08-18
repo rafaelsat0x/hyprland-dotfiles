@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 #
-# Installs this dotfiles repo by symlinking each config into place.
-# Safe to re-run: existing real files/dirs are backed up once, existing
-# correct symlinks are left alone.
+# Installs this dotfiles repo by copying each config into place (real files,
+# not symlinks). Safe to re-run: a target is only touched if it differs from
+# the repo's copy, and anything it overwrites is backed up first.
 #
 # Usage: ./install.sh
 
@@ -13,7 +13,7 @@ BACKUP_DIR="$HOME/.dotfiles-backup/$(date +%Y%m%d-%H%M%S)"
 backed_up=0
 
 # source (in this repo) -> target (in $HOME)
-LINKS=(
+ITEMS=(
     "config/hypr:.config/hypr"
     "config/noctalia:.config/noctalia"
     "config/uwsm:.config/uwsm"
@@ -22,16 +22,15 @@ LINKS=(
     "home/.p10k.zsh:.p10k.zsh"
 )
 
-link_one() {
+install_one() {
     local src="$REPO_DIR/$1"
     local dst="$HOME/$2"
 
-    if [ -L "$dst" ] && [ "$(readlink "$dst")" = "$src" ]; then
-        echo "ok      $2 (already linked)"
-        return
-    fi
-
     if [ -e "$dst" ] || [ -L "$dst" ]; then
+        if diff -rq "$src" "$dst" >/dev/null 2>&1; then
+            echo "ok      $2 (up to date)"
+            return
+        fi
         mkdir -p "$BACKUP_DIR/$(dirname "$2")"
         mv "$dst" "$BACKUP_DIR/$2"
         backed_up=1
@@ -39,15 +38,15 @@ link_one() {
     fi
 
     mkdir -p "$(dirname "$dst")"
-    ln -s "$src" "$dst"
-    echo "linked  $2 -> ${src#"$REPO_DIR"/}"
+    cp -a "$src" "$dst"
+    echo "copied  $2 <- ${src#"$REPO_DIR"/}"
 }
 
 echo "Installing dotfiles from $REPO_DIR"
 echo
 
-for entry in "${LINKS[@]}"; do
-    link_one "${entry%%:*}" "${entry##*:}"
+for entry in "${ITEMS[@]}"; do
+    install_one "${entry%%:*}" "${entry##*:}"
 done
 
 echo
@@ -56,3 +55,4 @@ if [ "$backed_up" -eq 1 ]; then
 fi
 echo "Done. Log out/reboot (or restart Hyprland) for everything to take effect."
 echo "Reminder: config/hypr/config/monitors.lua has this machine's monitor layout - check it matches the new machine's outputs (hyprctl monitors)."
+echo "Note: these are plain copies, not symlinks - after editing a live config, re-copy it into ~/dotfiles before committing (this script is one-way: repo -> \$HOME)."
