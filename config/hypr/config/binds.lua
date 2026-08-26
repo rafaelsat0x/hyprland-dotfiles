@@ -26,6 +26,7 @@ hl.bind(mainMod .. " + SHIFT + k",                   hl.dsp.window.move({ direct
 hl.bind(mainMod .. " + SHIFT + l",                hl.dsp.window.move({ direction = "r" }))
 hl.bind(mainMod .. " + SHIFT + h",                 hl.dsp.window.move({ direction = "l" }))
 hl.bind(mainMod .. " + SHIFT + j",                 hl.dsp.window.move({ direction = "d" }))
+
 -- Send active window to workspace N on the focused monitor
 for i = 1, NUM_WPM do
     local key = i % 10
@@ -37,8 +38,10 @@ hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag())
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize())
 
 -- Move & Resize with keyboard
-hl.bind(mainMod .. " + SHIFT + O", hl.dsp.window.resize({ x = 35, y = 0, relative = true}, {repeating = true}))
-hl.bind(mainMod .. " + SHIFT + P", hl.dsp.window.resize({ x = -35, y = 0, relative = true}, {repeating = true}))
+hl.bind(mainMod .. " + SHIFT + U", hl.dsp.window.resize({ x = -35, y = 0, relative = true}, {repeating = true}))
+hl.bind(mainMod .. " + SHIFT + I", hl.dsp.window.resize({ x = 0, y = 35, relative = true}, {repeating = true}))
+hl.bind(mainMod .. " + SHIFT + O", hl.dsp.window.resize({ x = 0, y = -35, relative = true}, {repeating = true}))
+hl.bind(mainMod .. " + SHIFT + P", hl.dsp.window.resize({ x = 35, y = 0, relative = true}, {repeating = true}))
 
 
 -- Zoom

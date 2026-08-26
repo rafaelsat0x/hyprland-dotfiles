@@ -1,16 +1,16 @@
 -- Hyprland default apps
 
-TERMINAL     = "kitty"
+TERMINAL = "kitty"
 FILE_MANAGER = "dolphin"
-BROWSER      = "zen-browser"
-EDITOR       = "code"
-CALCULATOR   = "gnome-calculator"
-SPOTIFY      = "spotify"
-VESKTOP	     = "vesktop"
+BROWSER = "zen-browser"
+EDITOR = "kitty -e nvim"
+CALCULATOR = "gnome-calculator"
+SPOTIFY = "spotify"
+VESKTOP = "stoat-desktop"
 -- Monitors
 -- Confirm the output name with: hyprctl monitors
-MONITOR1 = "eDP-1"     -- laptop panel
-MONITOR2 = "HDMI-A-1"  -- external display
+MONITOR1 = "eDP-1" -- laptop panel
+MONITOR2 = "HDMI-A-1" -- external display
 MONITOR3 = ""
 PRIMARY_MONITOR = MONITOR1
 

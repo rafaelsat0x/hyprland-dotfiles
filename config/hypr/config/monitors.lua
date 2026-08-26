@@ -7,12 +7,16 @@
 --     scale     = "1",
 -- })
 
-hl.monitor({
+-- Kept as a named global so config/lid.lua can re-apply the exact same spec
+-- when the laptop panel is brought back up, instead of duplicating the mode.
+LAPTOP_PANEL = {
     output    = MONITOR1,
     mode      = "1920x1080@120",
     position  = "0x0",
-    scale     = 1, 
-})
+    scale     = 1,
+}
+
+hl.monitor(LAPTOP_PANEL)
 
 hl.monitor({
     output    = MONITOR2,

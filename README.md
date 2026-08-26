@@ -42,3 +42,9 @@ live edits on its own.
   outputs/modes — check it against `hyprctl monitors` on the new machine.
 - `config/kitty/themes/noctalia.conf` is intentionally not tracked; Noctalia
   regenerates it at runtime to theme Kitty to match the current wallpaper.
+- `config/hypr/noctalia.lua` is likewise not tracked; Noctalia renders it from
+  its built-in Hyprland template on every theme change, and `hyprland.lua`
+  requires it to apply live border/group colors. Requires the `hyprland`
+  builtin template to be enabled (see `config/noctalia/config.toml`'s
+  `theme.templates.builtin_ids`, and — on the machine itself, not this repo —
+  the same list in `~/.local/state/noctalia/settings.toml`).

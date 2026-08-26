@@ -4,7 +4,7 @@ hl.config({
     },
     misc = {
         col = {
-            splash = GRUVGREEN,
+            splash = require("noctalia").colors.primary,
         },
         middle_click_paste = false,
         enable_swallow = true,
