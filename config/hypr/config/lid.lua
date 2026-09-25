@@ -1,13 +1,13 @@
 -- Lid switch handling
 --
 -- Closing the lid disables the laptop panel outright rather than just blanking
--- it (hl.dsp.dpms). Blanking would leave workspaces 1..9 alive on a screen you
+-- it (hl.dsp.dpms). Blanking would leave workspaces 1..10 alive on a screen you
 -- can't see, so any window sitting there becomes unreachable. Disabling makes
 -- Hyprland evacuate those workspaces onto the remaining monitor, so every open
 -- window stays usable on the external display.
 --
 -- Reopening the lid re-applies the panel spec from config/monitors.lua, and the
--- monitor-bound workspace rules in config/workspaces.lua pull workspaces 1..9
+-- monitor-bound workspace rules in config/workspaces.lua pull workspaces 1..10
 -- back to eDP-1 on their own. Nothing about the workspace layout is rewritten
 -- here, so the arrangement you had before the lid closed is what you get back.
 --

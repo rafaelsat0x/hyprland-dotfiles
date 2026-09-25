@@ -17,8 +17,8 @@ home/.p10k.zsh       -> ~/.p10k.zsh
 
 ## Install on a new machine
 
-Requires: hyprland, noctalia, uwsm, kitty, zsh + powerlevel10k already
-installed (this repo only covers config, not package installation).
+Requires: Hyprland, Noctalia, UWSM, Kitty, Zsh, Oh My Zsh, and Powerlevel10k
+already installed (this repo only covers config, not package installation).
 
 ```sh
 git clone <this-repo-url> ~/dotfiles
@@ -26,10 +26,11 @@ cd ~/dotfiles
 ./install.sh
 ```
 
-`install.sh` copies each item into place as real files (not symlinks).
-A target is only touched if it differs from the repo's copy; anything it
-overwrites is moved into `~/.dotfiles-backup/<timestamp>/` first, so it's
-non-destructive and safe to re-run.
+`install.sh` copies each tracked item into place as a real file (not a
+symlink). A target is only touched if it differs from the repo's copy;
+anything it overwrites is moved into `~/.dotfiles-backup/<timestamp>/` first,
+so it's non-destructive and safe to re-run. Destination-only files are
+preserved, including the runtime-generated Noctalia theme files.
 
 Because these are plain copies, the flow is one-way (repo -> `$HOME`): after
 editing a live config, copy it back into `~/dotfiles` and

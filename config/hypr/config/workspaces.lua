@@ -11,18 +11,12 @@ for i = 1, NUM_WPM do
     hl.workspace_rule({ workspace = tostring(i), monitor = MONITOR1, default = (i == 1), persistent = true })
 end
 
--- Give the external display its own equal-sized set of workspaces (11..19
--- for NUM_WPM = 9), since workspace IDs are global and can't be reused
--- across monitors. Use SUPER + CONTROL + <number> to jump to the Nth
+-- Give the external display its own equal-sized set of workspaces (11..20
+-- for NUM_WPM = 10), since workspace IDs are global and can't be reused
+-- across monitors. Use SUPER + <number> to jump to the Nth
 -- workspace on whichever monitor is currently focused.
 if MONITOR2 ~= "" then
     for i = 1, NUM_WPM do
         hl.workspace_rule({ workspace = tostring(i + 10), monitor = MONITOR2, default = (i == 1), persistent = true })
     end
 end
-
--- Workspace 10 sits unclaimed between MONITOR1's block (1..9) and MONITOR2's
--- (11..19). Left unbound, it's the one ID that can get grabbed as a fallback
--- when the laptop panel comes up before the rest of config/monitors settle,
--- which is why the laptop screen could land on 10 instead of 1 at boot.
-hl.workspace_rule({ workspace = "10", monitor = MONITOR1, persistent = true })

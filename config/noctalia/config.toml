@@ -38,10 +38,11 @@ settings_show_advanced = true
     session_position = "center"
 
     [shell.screenshot]
-    copy_to_clipboard = false
+    copy_to_clipboard = true
+    directory = "~/Pictures/Screenshots"
     pipe_command = "satty -f -"
-    pipe_to_command = true
-    save_to_file = false
+    pipe_to_command = false
+    save_to_file = true
 
     [[shell.session.actions]]
     action = "lock"
@@ -112,12 +113,9 @@ color = "error"
 [widget.spacer_1]
 type = "spacer"
 
-[widget.temp]
-show_label = false
-
 [widget.sysmon_2]
 glyph = "gpu-usage"
-show_label = false
+show_value = false
 stat = "gpu_temp"
 type = "sysmon"
 
@@ -137,6 +135,6 @@ color = "secondary"
 active_pill_size = 2.5
 capsule = true
 capsule_fill = "on_primary"
-display = "none"
+show_labels = false
 inactive_pill_size = 1.0
 pill_scale = 0.80

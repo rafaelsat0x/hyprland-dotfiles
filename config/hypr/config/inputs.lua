@@ -4,8 +4,10 @@
 -- with Alt + Shift. Order matters: the first layout listed is the active one.
 hl.config({
     input = {
-        kb_layout  = "us,br",
-        kb_variant = "intl,abnt2",
+        -- Keep this order identical to the per-device overrides below. The
+        -- bar associates its labels with these layout indices.
+        kb_layout  = "br,us",
+        kb_variant = "abnt2,intl",
         kb_options = "grp:alt_shift_toggle",
         -- sensitivity = -0.25,
         accel_profile = "flat",
@@ -19,14 +21,16 @@ hl.config({
         -- the touchpad block above does not affect external mice.
         -- natural_scroll = true,
     },
-    -- Uncomment the section below to enable software cursors; this can help with cursor display or behavior issues
-    -- cursor = {
-    --     no_hardware_cursors = 1,
-    -- },
+    -- breeze_cursors is an XCursor theme, not a Hyprcursor theme. Disabling
+    -- Hyprcursor makes Hyprland use XCURSOR_THEME instead of looking for the
+    -- manifest.hl file that Breeze does not provide.
+    cursor = {
+        enable_hyprcursor = false,
+    },
 })
 
--- Per-device overrides. Same two layouts, different starting one, so each
--- keyboard boots into its own native layout and still toggles independently.
+-- Per-device overrides. Keep the layout order aligned with the global defaults
+-- so the bar's index-based labels match the active keymap.
 
 -- Laptop built-in keyboard: starts on ABNT2.
 -- This machine exposes two candidates for the internal board; the ITE one is

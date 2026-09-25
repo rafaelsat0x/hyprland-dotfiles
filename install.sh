@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 #
-# Installs this dotfiles repo by copying each config into place (real files,
-# not symlinks). Safe to re-run: a target is only touched if it differs from
-# the repo's copy, and anything it overwrites is backed up first.
+# Installs this dotfiles repo by copying each tracked config file into place
+# (real files, not symlinks). Safe to re-run: a target is only touched if it
+# differs from the repo's copy, and anything it overwrites is backed up first.
+# Files that exist only in the destination (for example, generated Noctalia
+# theme files) are left alone.
 #
 # Usage: ./install.sh
 
@@ -12,12 +14,16 @@ REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BACKUP_DIR="$HOME/.dotfiles-backup/$(date +%Y%m%d-%H%M%S)"
 backed_up=0
 
-# source (in this repo) -> target (in $HOME)
-ITEMS=(
+# directory source (in this repo) -> directory target (in $HOME)
+TREES=(
     "config/hypr:.config/hypr"
     "config/noctalia:.config/noctalia"
     "config/uwsm:.config/uwsm"
     "config/kitty:.config/kitty"
+)
+
+# file source (in this repo) -> file target (in $HOME)
+FILES=(
     "home/.zshrc:.zshrc"
     "home/.p10k.zsh:.p10k.zsh"
 )
@@ -45,7 +51,17 @@ install_one() {
 echo "Installing dotfiles from $REPO_DIR"
 echo
 
-for entry in "${ITEMS[@]}"; do
+for entry in "${TREES[@]}"; do
+    src_root="${entry%%:*}"
+    dst_root="${entry##*:}"
+
+    while IFS= read -r -d '' src; do
+        relative_path="${src#"$REPO_DIR/$src_root/"}"
+        install_one "$src_root/$relative_path" "$dst_root/$relative_path"
+    done < <(find "$REPO_DIR/$src_root" \( -type f -o -type l \) -print0 | sort -z)
+done
+
+for entry in "${FILES[@]}"; do
     install_one "${entry%%:*}" "${entry##*:}"
 done
 
