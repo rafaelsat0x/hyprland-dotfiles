@@ -48,10 +48,10 @@ hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag())
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize())
 
 -- Move & Resize with keyboard
-hl.bind(mainMod .. " + ALT + h", hl.dsp.window.resize({ x = -35, y = 0, relative = true }, { repeating = true }))
-hl.bind(mainMod .. " + ALT + j", hl.dsp.window.resize({ x = 0, y = 35, relative = true }, { repeating = true }))
-hl.bind(mainMod .. " + ALT + k", hl.dsp.window.resize({ x = 0, y = -35, relative = true }, { repeating = true }))
-hl.bind(mainMod .. " + ALT + l", hl.dsp.window.resize({ x = 35, y = 0, relative = true }, { repeating = true }))
+hl.bind(mainMod .. " + ALT + h", hl.dsp.window.resize({ x = -120, y = 0, relative = true }, { repeating = true }))
+hl.bind(mainMod .. " + ALT + j", hl.dsp.window.resize({ x = 0, y = 120, relative = true }, { repeating = true }))
+hl.bind(mainMod .. " + ALT + k", hl.dsp.window.resize({ x = 0, y = -120, relative = true }, { repeating = true }))
+hl.bind(mainMod .. " + ALT + l", hl.dsp.window.resize({ x = 120, y = 0, relative = true }, { repeating = true }))
 
 -- Zoom
 local function zoomfunction(value)

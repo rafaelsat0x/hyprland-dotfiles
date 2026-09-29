@@ -1,14 +1,14 @@
 -- Input configuration
 
--- Global defaults. Every keyboard gets both layouts and can toggle between them
--- with Alt + Shift. Order matters: the first layout listed is the active one.
+-- Both layouts are available through the bar. No keyboard shortcut changes
+-- the layout; XKB group toggles would let individual devices drift apart.
 hl.config({
     input = {
         -- Keep this order identical to the per-device overrides below. The
         -- bar associates its labels with these layout indices.
         kb_layout  = "br,us",
         kb_variant = "abnt2,intl",
-        kb_options = "grp:alt_shift_toggle",
+        kb_options = "",
         -- sensitivity = -0.25,
         accel_profile = "flat",
 
@@ -41,13 +41,13 @@ hl.device({
     name       = "ite-tech.-inc.-ite-device(8910)-keyboard",
     kb_layout  = "br,us",
     kb_variant = "abnt2,intl",
-    kb_options = "grp:alt_shift_toggle",
+    kb_options = "",
 })
 hl.device({
     name       = "at-translated-set-2-keyboard",
     kb_layout  = "br,us",
     kb_variant = "abnt2,intl",
-    kb_options = "grp:alt_shift_toggle",
+    kb_options = "",
 })
 
 
@@ -57,9 +57,7 @@ hl.device({
     accel_profile = "adaptive"
 })
 
--- Alternative to the Alt + Shift XKB toggle: uncomment for a Hyprland bind
--- instead. "current" targets the keyboard you last typed on.
--- hl.bind("SUPER + ALT + K", hl.dsp.exec_cmd("hyprctl switchxkblayout current next"))
+-- Layout switching is intentionally available only from the bar.
 
 hl.gesture({ fingers = 4, direction = "horizontal", action = "workspace" })
 hl.gesture({ fingers = 3, direction = "down",       action = "close" })
