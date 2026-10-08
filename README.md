@@ -2,7 +2,7 @@
 
 Consolidated backup of everything that makes up my current Hyprland UI:
 Hyprland, Noctalia (shell/bar), UWSM (session manager), Kitty, and my zsh
-prompt (zshrc + p10k).
+prompt (p10k).
 
 ## Layout
 
@@ -11,8 +11,7 @@ config/hypr/       -> ~/.config/hypr
 config/noctalia/   -> ~/.config/noctalia
 config/uwsm/       -> ~/.config/uwsm
 config/kitty/      -> ~/.config/kitty
-home/.zshrc         -> ~/.zshrc
-home/.p10k.zsh       -> ~/.p10k.zsh
+home/.p10k.zsh     -> ~/.p10k.zsh
 ```
 
 ## Install on a new machine

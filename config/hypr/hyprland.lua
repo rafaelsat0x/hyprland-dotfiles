@@ -15,3 +15,4 @@ require("config.workspaces")
 
 -- For Noctalia Color templates
 require("noctalia").apply_theme()
+hl.env("QT_QPA_PLATFORMTHEME", "qt5ct:qt6ct")

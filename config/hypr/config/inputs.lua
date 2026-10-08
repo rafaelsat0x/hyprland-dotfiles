@@ -1,13 +1,14 @@
 -- Input configuration
 
--- Both layouts are available through the bar. No keyboard shortcut changes
--- the layout; XKB group toggles would let individual devices drift apart.
+-- The bar selects the shared default for unpinned keyboards. A single layout
+-- also makes newly connected keyboards inherit that selection immediately.
+-- Managed by scripts/keyboard-layout.py. Keep the default inline so automatic
+-- reloads never depend on a separate generated module being available.
+local keyboard_default = { layout = "br", variant = "abnt2" }
 hl.config({
     input = {
-        -- Keep this order identical to the per-device overrides below. The
-        -- bar associates its labels with these layout indices.
-        kb_layout  = "br,us",
-        kb_variant = "abnt2,intl",
+        kb_layout  = keyboard_default.layout,
+        kb_variant = keyboard_default.variant,
         kb_options = "",
         -- sensitivity = -0.25,
         accel_profile = "flat",
@@ -29,27 +30,34 @@ hl.config({
     },
 })
 
--- Per-device overrides. Keep the layout order aligned with the global defaults
--- so the bar's index-based labels match the active keymap.
-
--- Laptop built-in keyboard: starts on ABNT2.
--- This machine exposes two candidates for the internal board; the ITE one is
--- flagged "main: yes" in hyprctl devices, but at-translated-set-2 is kept as a
--- fallback because either can be the one actually delivering keystrokes.
--- Once you confirm which is live, you can delete the other block.
+-- Laptop built-in keyboard: always Brazilian Portuguese (ABNT2).
+-- Both internal keyboard interfaces are pinned.
 hl.device({
     name       = "ite-tech.-inc.-ite-device(8910)-keyboard",
-    kb_layout  = "br,us",
-    kb_variant = "abnt2,intl",
+    kb_layout  = "br",
+    kb_variant = "abnt2",
     kb_options = "",
 })
 hl.device({
     name       = "at-translated-set-2-keyboard",
-    kb_layout  = "br,us",
-    kb_variant = "abnt2,intl",
+    kb_layout  = "br",
+    kb_variant = "abnt2",
     kb_options = "",
 })
 
+
+-- Razer Huntsman: always US, preserving the existing International variant.
+-- Its four keyboard interfaces and mouse interface share the same device name;
+-- Hyprland adds numeric suffixes to distinguish them.
+for index = 0, 4 do
+    local suffix = index == 0 and "" or "-" .. index
+    hl.device({
+        name       = "razer-razer-huntsman-v2-tenkeyless" .. suffix,
+        kb_layout  = "us",
+        kb_variant = "intl",
+        kb_options = "",
+    })
+end
 
 --Touchpad - turning on adaptive mode
 hl.device({

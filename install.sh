@@ -24,7 +24,6 @@ TREES=(
 
 # file source (in this repo) -> file target (in $HOME)
 FILES=(
-    "home/.zshrc:.zshrc"
     "home/.p10k.zsh:.p10k.zsh"
 )
 

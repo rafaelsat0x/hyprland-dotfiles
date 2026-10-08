@@ -29,6 +29,9 @@ launch_apps_as_systemd_services = true
 polkit_agent = true
 settings_show_advanced = true
 
+    [shell.keyboard_layout.custom_labels]
+    "Portuguese (Brazil)" = "BR"
+
     [shell.greeter_sync]
     auto_sync = true
 
@@ -53,6 +56,7 @@ settings_show_advanced = true
 
     [[shell.session.actions]]
     action = "logout"
+    command = "uwsm stop"
     countdown_seconds = 0.0
     enabled = true
     shortcut = "2"
@@ -139,5 +143,13 @@ show_labels = false
 inactive_pill_size = 1.0
 pill_scale = 0.80
 
+[widget.keyboard_layout]
+# The label describes other keyboards, independently of the main keyboard.
+type = "custom_button"
+glyph = "keyboard"
+label = "BR"
+tooltip = "Other keyboards: BR / US. Razer stays US; laptop stays BR."
+
 [widget.keyboard_layout.actions]
 left = "exec python3 ~/.config/hypr/scripts/keyboard-layout.py next"
+right = "exec python3 ~/.config/hypr/scripts/keyboard-layout.py sync"
